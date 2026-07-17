@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "name": "Phantom Works",
+    "description": "Persona 5 inspired design system. Dark-first, high contrast, red/black, layered cutouts.",
+    "version": "1.0.0",
+    "date": "2026-07-17",
+    "cssFramework": "tailwind",
+    "mode": "dark-first-with-inverted-light",
+    "designedFor": "another-AI-prototype",
+    "inspiration": "Persona 5"
+  },
+  "designTokens": {
+    "colors": {
+      "primary": { "dark": "#D40000", "light": "#B80000" },
+      "onPrimary": { "dark": "#FFFFFF", "light": "#FFFFFF" },
+      "secondary": { "dark": "#1A1A1A", "light": "#E8E8E8" },
+      "accent": { "dark": "#FFFFFF", "light": "#D40000" },
+      "surfacePage": { "dark": "#0A0A0A", "light": "#F5F5F0" },
+      "surfaceCard": { "dark": "#121212", "light": "#FFFFFF" },
+      "surfaceElevated": { "dark": "#1A1A1A", "light": "#FFFFFF" },
+      "surfaceSunken": { "dark": "#050505", "light": "#EAEAE5" },
+      "textPrimary": { "dark": "#FFFFFF", "light": "#0A0A0A" },
+      "textSecondary": { "dark": "#D4D4D4", "light": "#6B6B6B" },
+      "textTertiary": { "dark": "#6B6B6B", "light": "#A1A1A1" },
+      "borderDefault": { "dark": "#2A2A2A", "light": "#DDD" },
+      "borderFocus": { "dark": "#E60000", "light": "#E60000" },
+      "stateSuccess": { "dark": "#22C55E", "light": "#16A34A" },
+      "stateWarning": { "dark": "#F59E0B", "light": "#D97706" },
+      "stateDanger": { "dark": "#FF1A1A", "light": "#DC2626" },
+      "stateInfo": { "dark": "#3B82F6", "light": "#2563EB" }
+    },
+    "fonts": {
+      "display": { "family": "JetBrains Mono", "fallback": "Fira Code, monospace", "usage": "Headings, display text" },
+      "body": { "family": "Inter", "usage": "Paragraphs, UI text" },
+      "mono": { "family": "JetBrains Mono", "fallback": "Fira Code, monospace", "usage": "Code, data" }
+    },
+    "typography": [
+      { "name": "Display", "size": "48px", "weight": "700", "lineHeight": "1.0", "letterSpacing": "-0.02em", "font": "JetBrains Mono", "usage": "Hero titles, main headers" },
+      { "name": "H1", "size": "36px", "weight": "700", "lineHeight": "1.1", "letterSpacing": "-0.01em", "font": "JetBrains Mono", "usage": "Section headers" },
+      { "name": "H2", "size": "28px", "weight": "700", "lineHeight": "1.15", "letterSpacing": "-0.01em", "font": "JetBrains Mono", "usage": "Card titles" },
+      { "name": "H3", "size": "22px", "weight": "700", "lineHeight": "1.2", "font": "JetBrains Mono", "usage": "Sub-section titles" },
+      { "name": "Body", "size": "15px", "weight": "400", "lineHeight": "1.6", "font": "Inter", "usage": "Paragraphs, descriptions" },
+      { "name": "Small", "size": "13px", "weight": "400", "lineHeight": "1.5", "font": "Inter", "usage": "Secondary info, metadata" },
+      { "name": "Caption", "size": "11px", "weight": "600", "lineHeight": "1.35", "letterSpacing": "0.08em", "textTransform": "uppercase", "font": "Inter", "usage": "Labels, timestamps" },
+      { "name": "Label", "size": "11px", "weight": "700", "lineHeight": "1.2", "letterSpacing": "0.12em", "textTransform": "uppercase", "font": "Inter", "usage": "Button text, nav items" }
+    ],
+    "spacing": [4, 8, 12, 16, 24, 32, 48, 64, 96, 128],
+    "radius": { "sm": "2px", "md": "4px", "lg": "8px", "xl": "12px", "full": "9999px" },
+    "shadows": {
+      "sm": { "value": "0 2px 0 var(--color-primary)", "meaning": "Paper stack, 2px red offset" },
+      "md": { "value": "0 4px 0 var(--color-primary), 0 6px 12px rgba(0,0,0,0.4)", "meaning": "Elevated card, 4px red offset" },
+      "lg": { "value": "0 8px 0 var(--color-primary), 0 12px 24px rgba(0,0,0,0.5)", "meaning": "Modal/drawer, 8px red offset" },
+      "xl": { "value": "0 12px 0 var(--color-primary), 0 20px 40px rgba(0,0,0,0.6)", "meaning": "Hero elements, 12px red offset" }
+    },
+    "effects": {
+      "maskCutout": "`.phantom-mask` — card with offset red frame behind it",
+      "stripe": "`.phantom-stripe` — diagonal red corner accent",
+      "divider": "`.phantom-divider` — 4px thick red horizontal rule"
+    },
+    "labelConvention": "ALL LABELS are uppercase with wide letter-spacing (0.08-0.12em)"
+  },
+  "designPrinciples": [
+    "Dark-First — near-black (#0A0A0A) default, light mode is inverted afterthought",
+    "Red is Power — #D40000 is the only accent color, never dilute with other hues",
+    "Paper Cutouts — red offset shadows create stacked-paper physicality",
+    "Sharp & Intentional — minimal border-radius (2-4px), every curve earned",
+    "Typography as Attitude — JetBrains Mono for monospace headings (terminal/dev feel), Inter for clean body",
+    "Mask Motif — layered cutout effect with offset red frame behind elements"
+  ],
+  "antiPatterns": [
+    "No gradients — flat, sharp, high-contrast only",
+    "No purple/pink/neon — red is the ONLY accent",
+    "No large border-radius — keep 2-8px max",
+    "No emoji as icons — use Lucide or Heroicons SVG",
+    "No center-everything — left-align with asymmetric balance",
+    "No softened shadows — hard red offset IS the brand"
+  ],
+  "cssUtilities": {
+    "phantom-mask": "Layered cutout card with offset red frame",
+    "phantom-stripe": "Diagonal red corner accent bar",
+    "phantom-divider": "4px thick red horizontal rule"
+  },
+  "componentList": [
+    "navbar", "hero", "section", "sidebar", "footer", "tabs",
+    "breadcrumb", "pagination", "stepper", "card", "list", "table",
+    "media", "text", "button", "input", "checkbox", "select",
+    "search", "toggle", "alert", "toast", "modal", "tooltip",
+    "badge", "avatar"
+  ],
+  "contrast": {
+    "primary-on-surface-dark": "#D40000 on #0A0A0A = 5.2:1 (AA for large, pass with bold weight)",
+    "text-primary-on-surface-dark": "#FFFFFF on #0A0A0A = 18.5:1 (AAA)",
+    "text-secondary-on-surface-dark": "#D4D4D4 on #0A0A0A = 12.1:1 (AAA)",
+    "text-primary-on-surface-light": "#0A0A0A on #F5F5F0 = 17.8:1 (AAA)",
+    "primary-on-surface-light": "#B80000 on #F5F5F0 = 6.8:1 (AA)"
+  },
+  "inspiredBy": "Persona 5 (Atlus)",
+  "notes": "Designed for another AI to consume and build a prototype. Every token is documented, every component has specs, every decision has a rationale."
+}

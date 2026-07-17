@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phantom Works — Light Mode Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design-system/references/tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    background: var(--surface-page);
+    color: var(--text-primary);
+    padding: 0;
+    transition: background 0.3s, color 0.3s;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+
+  .toggle-bar {
+    display: flex; align-items: center; gap: 12px;
+    justify-content: flex-end; margin-bottom: 24px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-secondary);
+  }
+  .toggle-btn {
+    background: var(--surface-card);
+    border: 1.5px solid var(--border-default);
+    color: var(--text-primary);
+    padding: 6px 16px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 10px;
+    transition: 0.15s;
+  }
+  .toggle-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .toggle-btn.active { background: var(--action-primary); color: var(--text-on-action); border-color: var(--action-primary); }
+
+  .hero {
+    background: var(--surface-sunken);
+    border: 1px solid var(--border-default);
+    padding: 48px 36px;
+    margin-bottom: 24px;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ''; position: absolute; top: -20px; right: -40px;
+    width: 120px; height: 60px; background: var(--color-primary);
+    transform: rotate(45deg); opacity: 0.15; pointer-events: none;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-display);
+    font-weight: var(--text-display-w);
+    line-height: var(--text-display-lh);
+    letter-spacing: var(--text-display-ls);
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+  .hero .meta {
+    font-size: var(--text-caption);
+    font-weight: var(--text-caption-w);
+    letter-spacing: var(--text-caption-ls);
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: var(--text-body);
+    line-height: var(--text-body-lh);
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin-bottom: 24px;
+  }
+  .hero .btns { display: flex; gap: 12px; }
+
+  .sec {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  .sec-label {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sec-label::after {
+    content: ''; flex: 1; height: 2px; background: var(--color-primary);
+  }
+
+  .btn-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+  .btn-phantom {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-body);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+  .btn-phantom-pri {
+    background: var(--action-primary);
+    color: var(--text-on-action);
+    box-shadow: var(--shadow-sm);
+    padding: 10px 24px;
+  }
+  .btn-phantom-pri:hover { background: var(--action-primary-hover); }
+  .btn-phantom-sec {
+    background: var(--action-secondary);
+    color: var(--text-primary);
+    padding: 10px 24px;
+  }
+  .btn-phantom-sec:hover { background: var(--action-secondary-hover); }
+  .btn-phantom-out {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1.5px solid var(--color-primary);
+    padding: 10px 24px;
+  }
+  .btn-phantom-out:hover { background: var(--color-primary); color: var(--text-on-action); }
+  .btn-phantom-ghost {
+    background: transparent;
+    color: var(--color-primary);
+    padding: 10px 4px;
+  }
+  .btn-phantom-ghost:hover { text-decoration: underline; }
+
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .badge-p5 {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: var(--radius-full);
+  }
+  .badge-success { background: var(--state-success-bg); color: var(--state-success); }
+  .badge-warning { background: var(--state-warning-bg); color: var(--state-warning); }
+  .badge-danger { background: var(--state-danger-bg); color: var(--state-danger); }
+  .badge-info { background: var(--state-info-bg); color: var(--state-info); }
+  .badge-neutral { background: var(--surface-elevated); color: var(--text-secondary); border: 1px solid var(--border-default); }
+
+  .alert-row { display: flex; flex-direction: column; gap: 10px; }
+  .alert-p5 {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    border-left: 3px solid;
+  }
+  .alert-success { border-color: var(--state-success); background: var(--state-success-bg); color: var(--state-success); }
+  .alert-warning { border-color: var(--state-warning); background: var(--state-warning-bg); color: var(--state-warning); }
+  .alert-danger { border-color: var(--state-danger); background: var(--state-danger-bg); color: var(--state-danger); }
+  .alert-info { border-color: var(--state-info); background: var(--state-info-bg); color: var(--state-info); }
+  .alert-p5 .alert-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; background: currentColor; color: var(--surface-card); }
+  .alert-p5 .alert-body { color: var(--text-primary); }
+  .alert-p5 .alert-body strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 2px; color: currentColor; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .card-p5 {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+  }
+  .card-p5 .card-label {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+  }
+  .card-p5 .card-title {
+    font-family: var(--font-display);
+    font-size: 18px; font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .card-p5 .card-body {
+    font-size: 13px; line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+  }
+
+  .input-group { display: flex; flex-direction: column; gap: 14px; max-width: 380px; }
+  .field {}
+  .field label {
+    display: block;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .field input, .field select {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    background: var(--surface-card);
+    color: var(--text-primary);
+    border: 1.5px solid var(--border-default);
+    border-radius: var(--radius-md);
+    transition: border-color 0.15s;
+  }
+  .field input:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--border-focus) 25%, transparent);
+  }
+  .field input.error { border-color: var(--state-danger); background: var(--state-danger-bg); }
+
+  .toggle-switch { display: flex; align-items: center; gap: 10px; }
+  .toggle-track {
+    width: 40px; height: 22px;
+    background: var(--border-default);
+    border-radius: 11px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .toggle-track.active { background: var(--color-primary); }
+  .toggle-knob {
+    width: 18px; height: 18px;
+    background: #FFF;
+    border-radius: 50%;
+    position: absolute; top: 2px; left: 2px;
+    transition: left 0.15s;
+  }
+  .toggle-track.active .toggle-knob { left: 20px; }
+
+  .table-p5 { width: 100%; border-collapse: collapse; }
+  .table-p5 th {
+    background: var(--surface-sunken);
+    color: var(--text-secondary);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--border-default);
+  }
+  .table-p5 td {
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-default);
+  }
+  .table-p5 tr:hover td { background: var(--surface-elevated); }
+
+  .phantom-divider-sample {
+    height: 4px;
+    background: var(--color-primary);
+    border: none;
+    margin: 24px 0;
+  }
+
+  .mask-demo {
+    position: relative;
+    background: var(--surface-card);
+    border: 2px solid var(--color-primary);
+    padding: 24px;
+    text-align: center;
+  }
+  .mask-demo::before {
+    content: '';
+    position: absolute;
+    top: 4px; left: 4px;
+    right: -4px; bottom: -4px;
+    background: var(--color-primary);
+    z-index: -1;
+  }
+  .mask-demo::after {
+    content: '';
+    position: absolute;
+    top: -4px; left: -4px;
+    right: 4px; bottom: 4px;
+    border: 2px solid var(--color-primary);
+    z-index: -1;
+  }
+  .mask-demo h3 {
+    font-family: var(--font-display);
+    font-size: 22px; font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 6px;
+  }
+  .mask-demo p { font-size: 13px; color: var(--text-secondary); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- Toggle -->
+  <div class="toggle-bar">
+    <span>🌙 Dark</span>
+    <button class="toggle-btn" id="modeToggle" onclick="toggleMode()">☀ LIGHT</button>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="meta">June 15–17, 2026 · Berlin</div>
+    <h1>PHANTOM SUMMIT '26</h1>
+    <p>The annual gathering for rebels and visionaries in computer vision.</p>
+    <div class="btns">
+      <button class="btn-phantom btn-phantom-pri">Register now</button>
+      <button class="btn-phantom btn-phantom-out">View schedule</button>
+    </div>
+  </div>
+
+  <!-- Colors -->
+  <div class="sec">
+    <div class="sec-label">Color Palette</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+      <div style="width:36px;height:36px;background:#7A0000;border-radius:2px;" title="#7A0000"></div>
+      <div style="width:36px;height:36px;background:#9C0000;border-radius:2px;" title="#9C0000"></div>
+      <div style="width:36px;height:36px;background:#B80000;border-radius:2px;" title="#B80000"></div>
+      <div style="width:36px;height:36px;background:#D40000;border-radius:2px;" title="#D40000"></div>
+      <div style="width:36px;height:36px;background:#FF1A1A;border-radius:2px;" title="#FF1A1A"></div>
+      <div style="width:36px;height:36px;background:#FF5555;border-radius:2px;" title="#FF5555"></div>
+      <div style="width:36px;height:36px;background:#22C55E;border-radius:2px;" title="success #22C55E"></div>
+      <div style="width:36px;height:36px;background:#F59E0B;border-radius:2px;" title="warning #F59E0B"></div>
+      <div style="width:36px;height:36px;background:#3B82F6;border-radius:2px;" title="info #3B82F6"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;font-size:12px;">
+      <span style="color:var(--text-primary);background:var(--surface-elevated);padding:4px 10px;border-radius:2px;">Text Primary</span>
+      <span style="color:var(--text-secondary);background:var(--surface-elevated);padding:4px 10px;border-radius:2px;">Text Secondary</span>
+      <span style="color:var(--text-tertiary);background:var(--surface-elevated);padding:4px 10px;border-radius:2px;">Text Tertiary</span>
+      <span style="color:var(--text-disabled);background:var(--surface-elevated);padding:4px 10px;border-radius:2px;">Text Disabled</span>
+      <span style="color:var(--color-primary);background:var(--surface-elevated);padding:4px 10px;border-radius:2px;">Phantom Red</span>
+    </div>
+  </div>
+
+  <!-- Typography -->
+  <div class="sec">
+    <div class="sec-label">Typography</div>
+    <p style="font-family:var(--font-display);font-size:var(--text-display);font-weight:var(--text-display-w);line-height:var(--text-display-lh);letter-spacing:var(--text-display-ls);color:var(--text-primary);margin-bottom:4px;">Display — JetBrains Mono 48px</p>
+    <p style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--text-primary);margin-bottom:4px;">H2 — JetBrains Mono 28px</p>
+    <p style="font-family:var(--font-body);font-size:var(--text-body);line-height:var(--text-body-lh);color:var(--text-secondary);margin-bottom:2px;">Body — Inter 15px / 1.6. This is the workhorse text for descriptions, paragraphs, and card content.</p>
+    <p style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-primary);">Label — Inter 11px UPPERCASE 0.12em</p>
+  </div>
+
+  <!-- Buttons -->
+  <div class="sec">
+    <div class="sec-label">Buttons</div>
+    <div class="btn-group">
+      <button class="btn-phantom btn-phantom-pri">Primary</button>
+      <button class="btn-phantom btn-phantom-sec">Secondary</button>
+      <button class="btn-phantom btn-phantom-out">Outline</button>
+      <button class="btn-phantom btn-phantom-ghost">Ghost</button>
+      <button class="btn-phantom btn-phantom-pri" disabled style="opacity:0.4;cursor:not-allowed;">Disabled</button>
+    </div>
+    <p style="font-size:11px;color:var(--text-tertiary);letter-spacing:0.05em;">All uppercase · 11px · 0.12em LS · 700 weight · Shadow on primary</p>
+  </div>
+
+  <!-- Badges -->
+  <div class="sec">
+    <div class="sec-label">Badges</div>
+    <div class="badge-row">
+      <span class="badge-p5 badge-success">● Confirmed</span>
+      <span class="badge-p5 badge-warning">⚠ Pending</span>
+      <span class="badge-p5 badge-danger">● Sold out</span>
+      <span class="badge-p5 badge-info">● Info</span>
+      <span class="badge-p5 badge-neutral">Draft</span>
+    </div>
+  </div>
+
+  <!-- Alerts -->
+  <div class="sec">
+    <div class="sec-label">Alerts</div>
+    <div class="alert-row">
+      <div class="alert-p5 alert-success"><div class="alert-icon">✓</div><div class="alert-body"><strong>Success</strong>Your registration has been confirmed.</div></div>
+      <div class="alert-p5 alert-warning"><div class="alert-icon">!</div><div class="alert-body"><strong>Warning</strong>Only 12 seats remain for this session.</div></div>
+      <div class="alert-p5 alert-danger"><div class="alert-icon">✕</div><div class="alert-body"><strong>Error</strong>Payment method declined. Please try again.</div></div>
+      <div class="alert-p5 alert-info"><div class="alert-icon">i</div><div class="alert-body"><strong>Info</strong>The schedule has been updated.</div></div>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="sec">
+    <div class="sec-label">Cards</div>
+    <div class="card-grid">
+      <div class="card-p5">
+        <div class="card-label">Keynote</div>
+        <div class="card-title">Dr. Sarah Chen</div>
+        <div class="card-body">The future of edge AI and real-time vision processing at the limit.</div>
+        <span class="badge-p5 badge-success">● Confirmed</span>
+      </div>
+      <div class="card-p5">
+        <div class="card-label">Workshop</div>
+        <div class="card-title">3D Reconstruction</div>
+        <div class="card-body">Hands-on session covering NeRF, Gaussian splatting, and SfM pipelines.</div>
+        <span class="badge-p5 badge-warning">⚠ 18 left</span>
+      </div>
+      <div class="card-p5">
+        <div class="card-label">Panel</div>
+        <div class="card-title">AI Ethics</div>
+        <div class="card-body">Navigating regulation, bias mitigation, and responsible deployment.</div>
+        <span class="badge-p5 badge-neutral">Draft</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mask effect -->
+  <div class="sec">
+    <div class="sec-label">Mask Effect (Paper Cutout)</div>
+    <div class="grid-2">
+      <div class="mask-demo">
+        <h3>PHANTOM MASK</h3>
+        <p>Layered red offset frame behind content — the signature P5 card effect.</p>
+      </div>
+      <div style="background:var(--surface-card);border:1px solid var(--border-default);border-radius:var(--radius-md);padding:24px;">
+        <p style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-primary);margin-bottom:8px;">Standard card</p>
+        <p style="font-size:13px;color:var(--text-secondary);">Normal card with shadow-sm: a 2px red edge at the bottom.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phantom divider -->
+  <hr class="phantom-divider-sample">
+
+  <!-- Forms -->
+  <div class="sec">
+    <div class="sec-label">Form Controls</div>
+    <div class="grid-2">
+      <div class="input-group">
+        <div class="field">
+          <label>Full name</label>
+          <input type="text" placeholder="e.g. Ren Amamiya">
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" placeholder="rebel@phantom-thieves.com">
+        </div>
+        <div class="field">
+          <label>Ticket tier</label>
+          <select><option>General admission</option><option>VIP — Front row</option><option>Workshop + Talk</option></select>
+        </div>
+      </div>
+      <div>
+        <div class="field" style="margin-bottom:14px;">
+          <label>Error state</label>
+          <input type="text" class="error" placeholder="Invalid input" value="bad input">
+          <span style="font-size:11px;color:var(--state-danger);margin-top:4px;display:block;">This field has an error.</span>
+        </div>
+        <div class="toggle-switch">
+          <div class="toggle-track active" onclick="this.classList.toggle('active')">
+            <div class="toggle-knob"></div>
+          </div>
+          <span style="font-size:12px;color:var(--text-primary);">Switch (toggle me)</span>
+        </div>
+        <div style="margin-top:12px;">
+          <div class="toggle-switch">
+            <div class="toggle-track" onclick="this.classList.toggle('active')">
+              <div class="toggle-knob"></div>
+            </div>
+            <span style="font-size:12px;color:var(--text-secondary);">Disabled</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="sec">
+    <div class="sec-label">Table</div>
+    <table class="table-p5">
+      <thead><tr><th>Speaker</th><th>Session</th><th>Status</th><th>Time</th></tr></thead>
+      <tbody>
+        <tr><td>Dr. Sarah Chen</td><td>Edge AI Keynote</td><td><span class="badge-p5 badge-success">Confirmed</span></td><td>09:00</td></tr>
+        <tr><td>Marcus Webb</td><td>3D Reconstruction Workshop</td><td><span class="badge-p5 badge-warning">Pending</span></td><td>11:30</td></tr>
+        <tr><td>Aiko Tanaka</td><td>Neural Rendering Panel</td><td><span class="badge-p5 badge-success">Confirmed</span></td><td>14:00</td></tr>
+        <tr><td>Dr. Lena Vogel</td><td>Medical Vision Talk</td><td><span class="badge-p5 badge-danger">Sold out</span></td><td>16:00</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Shadow demonstration -->
+  <div class="sec">
+    <div class="sec-label">Shadow Scale</div>
+    <div style="display:flex;flex-wrap:wrap;gap:20px;">
+      <div style="background:var(--surface-card);padding:20px 28px;box-shadow:var(--shadow-sm);border-radius:var(--radius-md);text-align:center;font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--text-secondary);">sm<br>2px</div>
+      <div style="background:var(--surface-card);padding:20px 28px;box-shadow:var(--shadow-md);border-radius:var(--radius-md);text-align:center;font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--text-secondary);">md<br>4px</div>
+      <div style="background:var(--surface-card);padding:20px 28px;box-shadow:var(--shadow-lg);border-radius:var(--radius-md);text-align:center;font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--text-secondary);">lg<br>8px</div>
+      <div style="background:var(--surface-card);padding:20px 28px;box-shadow:var(--shadow-xl);border-radius:var(--radius-md);text-align:center;font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--text-secondary);">xl<br>12px</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggleMode() {
+    document.body.classList.toggle('light-mode');
+    document.getElementById('modeToggle').textContent =
+      document.body.classList.contains('light-mode') ? '🌙 DARK' : '☀ LIGHT';
+  }
+  // Respect OS preference
+  if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+    document.body.classList.add('light-mode');
+    document.getElementById('modeToggle').textContent = '🌙 DARK';
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phantom Works — UI Kit (Persona 5 Inspired)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design-system/references/tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    background: var(--surface-page);
+    color: var(--text-primary);
+    padding: 0;
+    transition: background 0.3s, color 0.3s;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 40px 32px; }
+  .sec {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+  }
+  .sec-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--color-primary);
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+  .badge-s { background: var(--state-success-bg); color: var(--state-success); border: 1px solid var(--state-success); }
+  .badge-w { background: var(--state-warning-bg); color: var(--state-warning); border: 1px solid var(--state-warning); }
+  .badge-d { background: var(--state-danger-bg); color: var(--state-danger); border: 1px solid var(--state-danger); }
+  .badge-i { background: var(--state-info-bg); color: var(--state-info); border: 1px solid var(--state-info); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 150ms ease;
+    text-decoration: none;
+  }
+  .phantom-mask-showcase {
+    position: relative;
+    background: var(--surface-card);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    padding: 32px;
+    margin: 8px 0;
+    text-align: center;
+  }
+  .phantom-mask-showcase::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: -6px; bottom: -6px;
+    background: var(--color-primary);
+    border-radius: var(--radius-md);
+    z-index: -1;
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 16px; }
+    .sec { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div style="text-align:center;margin-bottom:40px;padding-bottom:32px;border-bottom:4px solid var(--color-primary);">
+    <div style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.12em;color:var(--color-primary);margin-bottom:12px;text-transform:uppercase;">Persona 5 Inspired Design System</div>
+    <h1 style="font-family:var(--font-display);font-size:var(--text-display);font-weight:var(--text-display-w);line-height:var(--text-display-lh);letter-spacing:var(--text-display-ls);color:var(--text-primary);margin-bottom:8px;">
+      PHANTOM<br>WORKS
+    </h1>
+    <p style="font-size:var(--text-small);color:var(--text-secondary);max-width:400px;margin:0 auto;">
+      High-contrast red/black design system. Dark-first. Paper cutout shadows. Bold typography.
+    </p>
+  </div>
+
+  <!-- MASK / CUTOUT SHOWCASE -->
+  <div class="sec" style="border-color:var(--color-primary);box-shadow:var(--shadow-md);">
+    <div class="sec-label">Signature Effect — Phantom Mask</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div>
+        <div class="phantom-mask-showcase">
+          <div style="font-family:var(--font-display);font-size:var(--text-h2);color:var(--color-primary);">MASK</div>
+          <div style="font-size:var(--text-small);color:var(--text-secondary);margin-top:4px;">Offset red frame behind element</div>
+        </div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);margin-top:4px;text-align:center;">class="phantom-mask"</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;justify-content:center;">
+        <div style="font-size:var(--text-small);color:var(--text-secondary);">
+          The <strong style="color:var(--color-primary);">phantom-mask</strong> utility recreates the Persona 5 layered cutout effect — a card floating with an offset red frame behind it, creating physical paper-stack depth.
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <div class="phantom-stripe" style="flex:1;background:var(--surface-card);border:1px solid var(--border-default);border-radius:var(--radius-sm);padding:12px;text-align:center;">
+            <span style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);">+ stripe</span>
+          </div>
+          <div style="background:var(--surface-card);border-left:4px solid var(--color-primary);border-radius:var(--radius-sm);padding:12px;flex:1;text-align:center;">
+            <span style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);">red rail</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLOR PALETTE -->
+  <div class="sec">
+    <div class="sec-label">Color Palette</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px;margin-bottom:20px;">
+      <div><div style="height:64px;border-radius:var(--radius-sm);background:var(--color-primary);border:1px solid var(--border-default);display:flex;align-items:flex-end;padding:6px;"><span style="font-size:9px;font-weight:700;color:#fff;letter-spacing:0.05em;text-transform:uppercase;">Primary</span></div><div style="font-size:9px;color:var(--text-tertiary);font-family:monospace;margin-top:2px;">#D40000</div></div>
+      <div><div style="height:64px;border-radius:var(--radius-sm);background:var(--surface-card);border:1px solid var(--border-default);display:flex;align-items:flex-end;padding:6px;"><span style="font-size:9px;font-weight:700;color:var(--text-primary);letter-spacing:0.05em;text-transform:uppercase;">Card</span></div><div style="font-size:9px;color:var(--text-tertiary);font-family:monospace;margin-top:2px;">#121212</div></div>
+      <div><div style="height:64px;border-radius:var(--radius-sm);background:var(--surface-page);border:1px solid var(--border-default);display:flex;align-items:flex-end;padding:6px;"><span style="font-size:9px;font-weight:700;color:var(--text-primary);letter-spacing:0.05em;text-transform:uppercase;">Page</span></div><div style="font-size:9px;color:var(--text-tertiary);font-family:monospace;margin-top:2px;">#0A0A0A</div></div>
+      <div><div style="height:64px;border-radius:var(--radius-sm);background:var(--surface-elevated);border:1px solid var(--border-default);display:flex;align-items:flex-end;padding:6px;"><span style="font-size:9px;font-weight:700;color:var(--text-primary);letter-spacing:0.05em;text-transform:uppercase;">Elevated</span></div><div style="font-size:9px;color:var(--text-tertiary);font-family:monospace;margin-top:2px;">#1A1A1A</div></div>
+      <div><div style="height:64px;border-radius:var(--radius-sm);background:var(--state-success);border:1px solid var(--border-default);display:flex;align-items:flex-end;padding:6px;"><span style="font-size:9px;font-weight:700;color:#fff;letter-spacing:0.05em;text-transform:uppercase;">Success</span></div><div style="font-size:9px;color:var(--text-tertiary);font-family:monospace;margin-top:2px;">#22C55E</div></div>
+      <div><div style="height:64px;border-radius:var(--radius-sm);background:var(--state-warning);border:1px solid var(--border-default);display:flex;align-items:flex-end;padding:6px;"><span style="font-size:9px;font-weight:700;color:#fff;letter-spacing:0.05em;text-transform:uppercase;">Warning</span></div><div style="font-size:9px;color:var(--text-tertiary);font-family:monospace;margin-top:2px;">#F59E0B</div></div>
+      <div><div style="height:64px;border-radius:var(--radius-sm);background:var(--state-danger);border:1px solid var(--border-default);display:flex;align-items:flex-end;padding:6px;"><span style="font-size:9px;font-weight:700;color:#fff;letter-spacing:0.05em;text-transform:uppercase;">Danger</span></div><div style="font-size:9px;color:var(--text-tertiary);font-family:monospace;margin-top:2px;">#FF1A1A</div></div>
+      <div><div style="height:64px;border-radius:var(--radius-sm);background:var(--state-info);border:1px solid var(--border-default);display:flex;align-items:flex-end;padding:6px;"><span style="font-size:9px;font-weight:700;color:#fff;letter-spacing:0.05em;text-transform:uppercase;">Info</span></div><div style="font-size:9px;color:var(--text-tertiary);font-family:monospace;margin-top:2px;">#3B82F6</div></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <span class="badge badge-s">● Confirmed</span>
+      <span class="badge badge-w">● Limited</span>
+      <span class="badge badge-d">● Sold Out</span>
+      <span class="badge badge-i">● Updated</span>
+      <span class="badge" style="background:var(--surface-elevated);color:var(--text-secondary);border:1px solid var(--border-default);">Default</span>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="sec">
+    <div class="sec-label">Typography</div>
+    <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:16px;">
+      <div style="display:flex;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-default);">
+        <span style="width:72px;font-size:9px;color:var(--text-tertiary);font-family:monospace;text-transform:uppercase;flex-shrink:0;">Display</span>
+        <span style="font-family:var(--font-display);font-size:var(--text-display);font-weight:var(--text-display-w);line-height:var(--text-display-lh);letter-spacing:var(--text-display-ls);">PHANTOM</span>
+        <span style="margin-left:auto;font-size:9px;color:var(--text-tertiary);font-family:monospace;">48px · JetBrains Mono</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-default);">
+        <span style="width:72px;font-size:9px;color:var(--text-tertiary);font-family:monospace;text-transform:uppercase;flex-shrink:0;">H1</span>
+        <span style="font-family:var(--font-display);font-size:var(--text-h1);font-weight:var(--text-h1-w);line-height:var(--text-h1-lh);letter-spacing:var(--text-h1-ls);">SECTION HEADER</span>
+        <span style="margin-left:auto;font-size:9px;color:var(--text-tertiary);font-family:monospace;">36px · JetBrains Mono</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-default);">
+        <span style="width:72px;font-size:9px;color:var(--text-tertiary);font-family:monospace;text-transform:uppercase;flex-shrink:0;">H2</span>
+        <span style="font-family:var(--font-display);font-size:var(--text-h2);font-weight:var(--text-h2-w);line-height:var(--text-h2-lh);letter-spacing:var(--text-h2-ls);">Card Title Here</span>
+        <span style="margin-left:auto;font-size:9px;color:var(--text-tertiary);font-family:monospace;">28px · JetBrains Mono</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-default);">
+        <span style="width:72px;font-size:9px;color:var(--text-tertiary);font-family:monospace;text-transform:uppercase;flex-shrink:0;">H3</span>
+        <span style="font-family:var(--font-display);font-size:var(--text-h3);font-weight:var(--text-h3-w);line-height:var(--text-h3-lh);">Speaker Name</span>
+        <span style="margin-left:auto;font-size:9px;color:var(--text-tertiary);font-family:monospace;">22px · JetBrains Mono</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-default);">
+        <span style="width:72px;font-size:9px;color:var(--text-tertiary);font-family:monospace;text-transform:uppercase;flex-shrink:0;">Body</span>
+        <span style="font-family:var(--font-body);font-size:var(--text-body);font-weight:var(--text-body-w);line-height:var(--text-body-lh);max-width:480px;">The quick brown fox jumps over the lazy dog. Persona 5 combines punk rebellion with acid-jazz elegance.</span>
+        <span style="margin-left:auto;font-size:9px;color:var(--text-tertiary);font-family:monospace;">15px · Inter</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-default);">
+        <span style="width:72px;font-size:9px;color:var(--text-tertiary);font-family:monospace;text-transform:uppercase;flex-shrink:0;">Caption</span>
+        <span style="font-size:var(--text-caption);font-weight:var(--text-caption-w);letter-spacing:var(--text-caption-ls);text-transform:uppercase;">June 15, 2026 · Berlin, Germany</span>
+        <span style="margin-left:auto;font-size:9px;color:var(--text-tertiary);font-family:monospace;">11px · Up · 0.08em</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:12px;padding:8px 0;">
+        <span style="width:72px;font-size:9px;color:var(--text-tertiary);font-family:monospace;text-transform:uppercase;flex-shrink:0;">Label</span>
+        <span style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;">Register Now</span>
+        <span style="margin-left:auto;font-size:9px;color:var(--text-tertiary);font-family:monospace;">11px · Up · 0.12em · Bold</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <div class="sec">
+    <div class="sec-label">Navbar</div>
+    <div style="background:var(--surface-card);border-bottom:2px solid var(--color-primary);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <span style="font-family:var(--font-display);font-size:18px;color:var(--color-primary);letter-spacing:-0.01em;">PHANTOM</span>
+      <div style="display:flex;gap:20px;">
+        <span style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--color-primary);">Events</span>
+        <span style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--text-secondary);">Speakers</span>
+        <span style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--text-secondary);">Schedule</span>
+        <span style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--text-secondary);">Sponsors</span>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <span style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--text-primary);cursor:pointer;">Log In</span>
+        <span class="btn" style="padding:8px 20px;background:var(--action-primary);color:var(--text-on-action);border-radius:var(--radius-md);font-size:var(--text-label);box-shadow:var(--shadow-sm);">Register</span>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--text-tertiary);margin-top:8px;text-align:center;font-family:monospace;">Bottom border: 2px solid var(--color-primary) · Labels: uppercase 0.12em</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="sec phantom-stripe" style="border-color:var(--color-primary);overflow:hidden;">
+    <div class="sec-label">Hero Banner</div>
+    <div style="background:var(--surface-sunken);border:2px solid var(--color-primary);border-radius:var(--radius-md);padding:48px 36px;margin-bottom:12px;box-shadow:var(--shadow-lg);position:relative;">
+      <div style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--color-primary);margin-bottom:4px;">
+        June 15–17, 2026 · Berlin
+      </div>
+      <div style="font-family:var(--font-display);font-size:var(--text-display);font-weight:var(--text-display-w);line-height:var(--text-display-lh);letter-spacing:var(--text-display-ls);margin-bottom:4px;">
+        PHANTOM<br>SUMMIT
+      </div>
+      <div style="font-size:var(--text-h3);font-family:var(--font-display);font-weight:var(--text-display-w);letter-spacing:var(--text-display-ls);color:var(--color-primary);margin-bottom:16px;">
+        '26
+      </div>
+      <div style="font-size:var(--text-body);font-weight:var(--text-body-w);line-height:var(--text-body-lh);color:var(--text-secondary);max-width:420px;margin-bottom:24px;">
+        The annual gathering for rebels, visionaries, and rule-breakers in computer vision.
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <span class="btn" style="padding:12px 28px;background:var(--action-primary);color:var(--text-on-action);border-radius:var(--radius-md);font-size:var(--text-label);box-shadow:var(--shadow-md);">Register Now</span>
+        <span class="btn" style="padding:12px 28px;background:transparent;color:var(--text-primary);border:1.5px solid var(--border-inverse);border-radius:var(--radius-md);font-size:var(--text-label);">View Schedule</span>
+      </div>
+    </div>
+    <div style="background:var(--surface-card);border:1px solid var(--color-primary);border-radius:var(--radius-md);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--font-display);font-size:var(--text-h3);">Early Bird</div>
+        <div style="font-size:var(--text-small);color:var(--text-secondary);">Save 40% — 3 days remaining</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <span class="badge badge-w">● 3 Days Left</span>
+        <span class="btn" style="padding:8px 20px;background:var(--action-primary);color:var(--text-on-action);border-radius:var(--radius-md);font-size:var(--text-label);box-shadow:var(--shadow-sm);">Claim</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARDS -->
+  <div class="sec">
+    <div class="sec-label">Cards</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
+      <div style="background:var(--surface-card);border:1px solid var(--border-default);border-radius:var(--radius-md);padding:20px;border-top:3px solid var(--color-primary);box-shadow:var(--shadow-sm);">
+        <div style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--color-primary);margin-bottom:8px;">Keynote</div>
+        <div style="font-family:var(--font-display);font-size:var(--text-h3);margin-bottom:4px;">Dr. Sarah Chen</div>
+        <div style="font-size:var(--text-small);color:var(--text-secondary);line-height:1.5;margin-bottom:12px;">"Vision Transformers: Beyond the Hype" — a technical deep dive.</div>
+        <span class="badge badge-s">● Confirmed</span>
+      </div>
+      <div style="background:var(--surface-card);border:1px solid var(--border-default);border-radius:var(--radius-md);padding:20px;box-shadow:var(--shadow-md);border-left:3px solid var(--color-primary);">
+        <div style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--color-primary);margin-bottom:8px;">Workshop</div>
+        <div style="font-family:var(--font-display);font-size:var(--text-h3);margin-bottom:4px;">Real-Time ML</div>
+        <div style="font-size:var(--text-small);color:var(--text-secondary);line-height:1.5;margin-bottom:12px;">Bring your laptop. Train a real-time object detection model from scratch.</div>
+        <div style="display:flex;gap:6px;">
+          <span class="btn" style="padding:6px 16px;background:var(--action-primary);color:var(--text-on-action);border-radius:var(--radius-sm);font-size:var(--text-label);">Register</span>
+          <span class="btn" style="padding:6px 16px;background:transparent;color:var(--text-primary);border:1px solid var(--border-default);border-radius:var(--radius-sm);font-size:var(--text-label);">Details</span>
+        </div>
+      </div>
+      <div style="background:var(--color-primary);border-radius:var(--radius-md);padding:20px;box-shadow:var(--shadow-md);">
+        <div style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:8px;">Sponsor</div>
+        <div style="font-family:var(--font-display);font-size:var(--text-h3);color:#FFFFFF;margin-bottom:4px;">Become a Partner</div>
+        <div style="font-size:var(--text-small);color:rgba(255,255,255,0.75);line-height:1.5;margin-bottom:12px;">Reach 2,000+ decision-makers in computer vision.</div>
+        <span class="btn" style="padding:6px 16px;background:#FFFFFF;color:var(--color-primary);border-radius:var(--radius-sm);font-size:var(--text-label);">Learn More</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="sec">
+    <div class="sec-label">Buttons</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px;">
+      <button class="btn" style="padding:10px 24px;background:var(--action-primary);color:var(--text-on-action);border-radius:var(--radius-md);font-size:var(--text-label);box-shadow:var(--shadow-sm);">Primary</button>
+      <button class="btn" style="padding:10px 24px;background:var(--action-secondary);color:var(--text-primary);border-radius:var(--radius-md);font-size:var(--text-label);">Secondary</button>
+      <button class="btn" style="padding:9px 24px;background:transparent;color:var(--color-primary);border:1.5px solid var(--color-primary);border-radius:var(--radius-md);font-size:var(--text-label);">Outline</button>
+      <button class="btn" style="padding:10px 24px;background:var(--state-success-bg);color:var(--state-success);border-radius:var(--radius-md);font-size:var(--text-label);">Soft</button>
+      <button class="btn" style="padding:10px 16px;background:transparent;color:var(--color-primary);font-size:var(--text-label);text-decoration:underline;">Ghost</button>
+      <button class="btn" style="padding:10px 24px;background:var(--action-primary-disabled);color:var(--text-disabled);border-radius:var(--radius-md);font-size:var(--text-label);cursor:not-allowed;">Disabled</button>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button class="btn" style="padding:4px 12px;background:var(--color-primary);color:var(--color-on-primary);border-radius:var(--radius-sm);font-size:var(--text-label);">XS</button>
+      <button class="btn" style="padding:6px 16px;background:var(--color-primary);color:var(--color-on-primary);border-radius:var(--radius-sm);font-size:var(--text-label);">SM</button>
+      <button class="btn" style="padding:10px 24px;background:var(--color-primary);color:var(--color-on-primary);border-radius:var(--radius-md);font-size:var(--text-label);">MD</button>
+      <button class="btn" style="padding:14px 32px;background:var(--color-primary);color:var(--color-on-primary);border-radius:var(--radius-md);font-size:var(--text-label);">LG</button>
+      <button class="btn" style="padding:16px 40px;background:var(--color-primary);color:var(--color-on-primary);border-radius:var(--radius-lg);font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">XL</button>
+    </div>
+  </div>
+
+  <!-- INPUTS -->
+  <div class="sec">
+    <div class="sec-label">Inputs</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
+      <div>
+        <label style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;display:block;margin-bottom:4px;">Default</label>
+        <input type="text" placeholder="Enter text..." style="width:100%;padding:10px 12px;border-radius:var(--radius-md);border:1.5px solid var(--border-default);font-size:var(--text-small);font-family:var(--font-body);background:var(--surface-card);color:var(--text-primary);outline:none;">
+      </div>
+      <div>
+        <label style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;display:block;margin-bottom:4px;">Focus</label>
+        <input type="text" value="Focused state" style="width:100%;padding:10px 12px;border-radius:var(--radius-md);border:1.5px solid var(--border-focus);font-size:var(--text-small);font-family:var(--font-body);background:var(--surface-card);color:var(--text-primary);outline:none;box-shadow:0 0 0 3px rgba(230,0,0,0.2);">
+      </div>
+      <div>
+        <label style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;display:block;margin-bottom:4px;">Error</label>
+        <input type="text" value="Invalid" style="width:100%;padding:10px 12px;border-radius:var(--radius-md);border:1.5px solid var(--state-danger);font-size:var(--text-small);font-family:var(--font-body);background:var(--state-danger-bg);color:var(--state-danger);outline:none;">
+        <div style="font-size:10px;color:var(--state-danger);margin-top:4px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Required field</div>
+      </div>
+      <div>
+        <label style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;display:block;margin-bottom:4px;color:var(--text-disabled);">Disabled</label>
+        <input type="text" value="Disabled" disabled style="width:100%;padding:10px 12px;border-radius:var(--radius-md);border:1.5px solid var(--border-default);font-size:var(--text-small);font-family:var(--font-body);background:var(--surface-sunken);color:var(--text-disabled);outline:none;cursor:not-allowed;">
+      </div>
+    </div>
+  </div>
+
+  <!-- BADGES + ALERTS -->
+  <div class="sec">
+    <div class="sec-label">Alerts</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="padding:12px 16px;border-radius:var(--radius-md);background:var(--state-success-bg);border-left:3px solid var(--state-success);font-size:var(--text-small);display:flex;align-items:center;gap:10px;">
+        <span style="width:20px;height:20px;border-radius:50%;background:var(--state-success);color:#000;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;">✓</span>
+        <span><strong style="color:var(--state-success);text-transform:uppercase;font-size:var(--text-label);">Confirmed:</strong> <span style="color:var(--text-secondary);">Your pass is ready.</span></span>
+      </div>
+      <div style="padding:12px 16px;border-radius:var(--radius-md);background:var(--state-warning-bg);border-left:3px solid var(--state-warning);font-size:var(--text-small);display:flex;align-items:center;gap:10px;">
+        <span style="width:20px;height:20px;border-radius:50%;background:var(--state-warning);color:#000;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;">!</span>
+        <span><strong style="color:var(--state-warning);text-transform:uppercase;font-size:var(--text-label);">Warning:</strong> <span style="color:var(--text-secondary);">Early bird ends in 3 days.</span></span>
+      </div>
+      <div style="padding:12px 16px;border-radius:var(--radius-md);background:var(--state-danger-bg);border-left:3px solid var(--state-danger);font-size:var(--text-small);display:flex;align-items:center;gap:10px;">
+        <span style="width:20px;height:20px;border-radius:50%;background:var(--state-danger);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;">✕</span>
+        <span><strong style="color:var(--state-danger);text-transform:uppercase;font-size:var(--text-label);">Sold Out:</strong> <span style="color:var(--text-secondary);">This session has reached capacity.</span></span>
+      </div>
+      <div style="padding:12px 16px;border-radius:var(--radius-md);background:var(--state-info-bg);border-left:3px solid var(--state-info);font-size:var(--text-small);display:flex;align-items:center;gap:10px;">
+        <span style="width:20px;height:20px;border-radius:50%;background:var(--state-info);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;">i</span>
+        <span><strong style="color:var(--state-info);text-transform:uppercase;font-size:var(--text-label);">Update:</strong> <span style="color:var(--text-secondary);">Keynote moved to Hall A.</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="sec">
+    <div class="sec-label">Table</div>
+    <div style="border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-default);">
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr 70px;background:var(--surface-sunken);padding:12px 16px;font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--text-tertiary);">
+        <span>Session</span><span>Status</span><span>Capacity</span><span></span>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr 70px;padding:12px 16px;border-top:1px solid var(--border-default);font-size:var(--text-small);align-items:center;">
+        <span style="font-weight:500;">Keynote: Vision Transformers</span>
+        <span><span class="badge badge-s">Confirmed</span></span>
+        <span style="color:var(--text-secondary);">342 / 400</span>
+        <span style="font-size:var(--text-caption);color:var(--color-primary);font-weight:700;cursor:pointer;text-transform:uppercase;">Join</span>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr 70px;padding:12px 16px;border-top:1px solid var(--border-default);font-size:var(--text-small);align-items:center;">
+        <span style="font-weight:500;">Workshop: Real-Time ML</span>
+        <span><span class="badge badge-w">Limited</span></span>
+        <span style="color:var(--text-secondary);">28 / 40</span>
+        <span style="font-size:var(--text-caption);color:var(--color-primary);font-weight:700;cursor:pointer;text-transform:uppercase;">Join</span>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr 70px;padding:12px 16px;border-top:1px solid var(--border-default);font-size:var(--text-small);align-items:center;">
+        <span style="font-weight:500;">Panel: Ethics in CV</span>
+        <span><span class="badge badge-d">Sold Out</span></span>
+        <span style="color:var(--text-secondary);">200 / 200</span>
+        <span style="font-size:var(--text-caption);color:var(--text-tertiary);font-weight:600;text-transform:uppercase;">Wait</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOGGLE -->
+  <div class="sec">
+    <div class="sec-label">Toggles</div>
+    <div style="display:flex;gap:32px;align-items:center;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:40px;height:22px;border-radius:11px;background:var(--color-primary);position:relative;cursor:pointer;">
+          <div style="width:18px;height:18px;border-radius:50%;background:#FFFFFF;position:absolute;right:2px;top:2px;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>
+        </div>
+        <span style="font-size:var(--text-small);font-weight:500;">Notifications On</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:40px;height:22px;border-radius:11px;background:var(--border-default);position:relative;cursor:pointer;">
+          <div style="width:18px;height:18px;border-radius:50%;background:#FFFFFF;position:absolute;left:2px;top:2px;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>
+        </div>
+        <span style="font-size:var(--text-small);color:var(--text-secondary);">Notifications Off</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEPPER -->
+  <div class="sec">
+    <div class="sec-label">Stepper</div>
+    <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="width:24px;height:24px;border-radius:50%;background:var(--color-primary);color:#FFFFFF;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">✓</div>
+        <span style="font-size:var(--text-small);color:var(--text-secondary);">Select Pass</span>
+        <div style="width:32px;height:2px;background:var(--color-primary);margin:0 6px;border-radius:1px;"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="width:24px;height:24px;border-radius:50%;background:var(--color-primary);color:#FFFFFF;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</div>
+        <span style="font-size:var(--text-small);font-weight:600;">Attendee Info</span>
+        <div style="width:32px;height:2px;background:var(--border-default);margin:0 6px;"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="width:24px;height:24px;border-radius:50%;background:var(--border-default);color:var(--text-secondary);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</div>
+        <span style="font-size:var(--text-small);color:var(--text-secondary);">Payment</span>
+        <div style="width:32px;height:2px;background:var(--border-default);margin:0 6px;"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div style="width:24px;height:24px;border-radius:50%;background:var(--border-default);color:var(--text-secondary);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">4</div>
+        <span style="font-size:var(--text-small);color:var(--text-secondary);">Confirm</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="sec">
+    <div class="sec-label">Toast</div>
+    <div style="display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border-radius:var(--radius-md);background:var(--surface-elevated);box-shadow:var(--shadow-lg);border:1px solid var(--border-default);">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--state-success);flex-shrink:0;"></span>
+      <span style="font-size:var(--text-small);">Registration saved successfully.</span>
+      <span style="font-size:var(--text-label);font-weight:700;color:var(--color-primary);cursor:pointer;">Undo</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="sec">
+    <div class="sec-label">Footer</div>
+    <div style="border-top:4px solid var(--color-primary);padding-top:24px;">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:20px;">
+        <div>
+          <div style="font-family:var(--font-display);font-size:20px;color:var(--color-primary);margin-bottom:4px;">PHANTOM</div>
+          <div style="font-size:var(--text-small);color:var(--text-secondary);">The computer vision event of the year.</div>
+        </div>
+        <div style="display:flex;gap:40px;flex-wrap:wrap;">
+          <div>
+            <div style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--color-primary);margin-bottom:10px;">Event</div>
+            <div style="font-size:var(--text-small);color:var(--text-secondary);margin-bottom:6px;cursor:pointer;">Schedule</div>
+            <div style="font-size:var(--text-small);color:var(--text-secondary);margin-bottom:6px;cursor:pointer;">Speakers</div>
+            <div style="font-size:var(--text-small);color:var(--text-secondary);cursor:pointer;">Tickets</div>
+          </div>
+          <div>
+            <div style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--color-primary);margin-bottom:10px;">Company</div>
+            <div style="font-size:var(--text-small);color:var(--text-secondary);margin-bottom:6px;cursor:pointer;">About</div>
+            <div style="font-size:var(--text-small);color:var(--text-secondary);margin-bottom:6px;cursor:pointer;">Sponsors</div>
+            <div style="font-size:var(--text-small);color:var(--text-secondary);cursor:pointer;">Contact</div>
+          </div>
+          <div>
+            <div style="font-size:var(--text-label);font-weight:var(--text-label-w);letter-spacing:var(--text-label-ls);text-transform:uppercase;color:var(--color-primary);margin-bottom:10px;">Legal</div>
+            <div style="font-size:var(--text-small);color:var(--text-secondary);margin-bottom:6px;cursor:pointer;">Privacy</div>
+            <div style="font-size:var(--text-small);color:var(--text-secondary);margin-bottom:6px;cursor:pointer;">Terms</div>
+            <div style="font-size:var(--text-small);color:var(--text-secondary);cursor:pointer;">Imprint</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:var(--text-caption);color:var(--text-tertiary);text-transform:uppercase;border-top:1px solid var(--border-default);padding-top:14px;">
+        <span>&copy; 2026 Phantom Works</span>
+        <div style="display:flex;gap:20px;">
+          <span style="cursor:pointer;">Privacy</span>
+          <span style="cursor:pointer;">Terms</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <div style="text-align:center;padding:24px 0 8px;">
+    <div style="font-family:var(--font-display);font-size:var(--text-h2);color:var(--color-primary);margin-bottom:4px;">THANK YOU</div>
+    <div style="font-size:var(--text-small);color:var(--text-tertiary);">
+      Persona 5 Inspired Design System · Tokens in <code style="font-family:var(--font-mono);font-size:10px;">design-system/references/tokens.css</code>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
